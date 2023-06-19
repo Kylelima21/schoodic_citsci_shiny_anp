@@ -1,7 +1,7 @@
 ### This script downloads the data and images that are to be updated daily.
 
 ## Source the functions
-source("display/00_app_functions.R")
+source("00_app_functions.R")
 library(rsconnect)
 
 
@@ -22,12 +22,12 @@ groups <- data.frame(iconic.taxon.name = c("Plantae", "Mammalia", "Animalia", "A
 final_data <- combine_citsci_data(inat, ebird, join = groups)
 
 ## Write out the data
-write_csv(final_data, "display/www/datasets/the_data.csv")
+write_csv(final_data, "www/datasets/the_data.csv")
 
 
 ### iNaturalist images
 ## Download the images to the www folder
-download_photos(final_data, "display/www/img/obs")
+download_photos(final_data, "www/img/obs")
 
 
 ### Deploy updates to shiny app
