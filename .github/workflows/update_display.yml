@@ -18,7 +18,7 @@ jobs:
       - name: deploy
         uses: BDSI-Utwente/shinyapps-deploy-github-action@v1
         with:
-          # account and application name
+          # account and application names
           appName: si_citizen_science_display
           accountName: schoodic-institute-data
 
