@@ -28,7 +28,7 @@ jobs:
       - name: Run rmd to update info
         run: |
             source("get_app_data.R")
-            shell: Rscript {0} 
+        shell: Rscript {0} 
       
       - name: Commit files # Commit changes
         run: |
