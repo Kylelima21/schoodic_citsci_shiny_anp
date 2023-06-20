@@ -120,6 +120,7 @@ ui <- fluidPage(
             img(src = "img/inat.png", alt = "iNaturalist", class = "obs-logos"),
             div(class = "sep-line"),
             div(class = "inat-display-grid",
+                
                 div(class = "observers-format",
                     h4(tags$b("Observers")),
                     icon("users"),
