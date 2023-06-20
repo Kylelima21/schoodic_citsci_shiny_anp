@@ -5,26 +5,32 @@ on:
   push:
     
 jobs:
-  deploy:
-    name: Deploy to shinyapp.io
-
-    runs-on: ubuntu-18.04
+  runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
-      
-      - uses: r-lib/actions/setup-r@v1
-        id: install-r
-        with:
-          r-version: ${{ matrix.config.r }}
-          http-user-agent: ${{ matrix.config.http-user-agent }}
+      - uses: actions/checkout@v2 # Checkout branch into the runner
+      - uses: r-lib/actions/setup-r@v2-branch # Set up R
+      - uses: r-lib/actions/setup-pandoc@v2 # Set up pandoc for RMD file
           
-      - name: deploy
-        uses: BDSI-Utwente/shinyapps-deploy-github-action@v1
-        with:
-          # account and application names
-          appName: si_citizen_science_display
-          accountName: schoodic-institute-data
-
-          # token and secret obtained from https://www.shinyapps.io/admin/#/tokens
-          accountToken: 57B287A6E91E86DCCA29B542392AB8E2
-          accountSecret: 6NZ1FD19vvDi6pKIQ+iMXgxiYyTsgOc2yEzTl4bC
+      - name: Install packages
+        run: |
+          brew install pkg-config
+          brew install gdal
+          R -e 'install.packages("sf")'
+          R -e 'install.packages("tidyverse")'
+          R -e 'install.packages("lubridate")'
+          R -e 'install.packages("kableExtra")'
+          R -e 'install.packages("htmltools")'
+          R -e 'install.packages("rinat")'
+          R -e 'install.packages("rebird")'
+          R -e 'install.packages("gt")'
+          R -e 'install.packages("rgdal")'
+          
+      - name: Run rmd to update info
+        run: Rscript -e 01_get_app_data.R
+      
+      - name: Commit files # Commit changes
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add .
+          git diff-index --quiet HEAD || (git commit -m "weekly update of citsci report" && git push)
