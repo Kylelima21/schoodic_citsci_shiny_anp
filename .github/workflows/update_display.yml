@@ -19,15 +19,16 @@ jobs:
           R -e 'install.packages("sf")'
           R -e 'install.packages("tidyverse")'
           R -e 'install.packages("lubridate")'
-          R -e 'install.packages("kableExtra")'
+          R -e 'install.packages("leaflet")'
           R -e 'install.packages("htmltools")'
           R -e 'install.packages("rinat")'
           R -e 'install.packages("rebird")'
-          R -e 'install.packages("gt")'
-          R -e 'install.packages("rgdal")'
+          R -e 'install.packages("rsconnect")'
           
       - name: Run rmd to update info
-        run: Rscript -e {get_app_data.R}
+        run: |
+            source("get_app_data.R")
+            shell: Rscript {0} 
       
       - name: Commit files # Commit changes
         run: |
