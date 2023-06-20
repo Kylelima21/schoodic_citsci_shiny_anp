@@ -27,7 +27,7 @@ jobs:
           R -e 'install.packages("rgdal")'
           
       - name: Run rmd to update info
-        run: Rscript -e 01_get_app_data.R
+        run: Rscript -e "01_get_app_data.R"
       
       - name: Commit files # Commit changes
         run: |
