@@ -19,5 +19,5 @@ jobs:
           accountName: schoodic-institute-data
 
           # token and secret obtained from https://www.shinyapps.io/admin/#/tokens
-          accountToken: ${{ secrets.TOKEN }}
-          accountSecret: ${{ secrets.SECRET }}
+          accountToken: ${{ TOKEN }}
+          accountSecret: ${{ SECRET }}
