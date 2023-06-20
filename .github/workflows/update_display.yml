@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v2
           
       - name: deploy
-        uses: BDSI-Utwente/shinyapps-deploy-github-action@v1
+        uses: BDSI-Utwente/shinyapps-deploy-github-action@v2
         with:
           # account and application names
           appName: si_citizen_science_display
