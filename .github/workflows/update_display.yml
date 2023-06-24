@@ -24,7 +24,7 @@ jobs:
           R -e 'install.packages("rinat")'
           R -e 'install.packages("rebird")'
           R -e 'install.packages("DT")'
-          R -e 'install.packages("Downloader")'
+          R -e 'install.packages("downloader")'
           R -e 'install.packages("purrr")'
           R -e 'install.packages("rsconnect")'
           
