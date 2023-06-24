@@ -2,20 +2,20 @@ library(tidyverse)
 library(rinat)
 library(lubridate)
 library(leaflet)
-library(shiny)
-library(shinyjs)
-library(shinythemes)
+#library(shiny)
+#library(shinyalert)
+#library(shinyjs)
+#library(shinythemes)
 library(shinyWidgets)
-library(bslib)
-library(fresh)
-library(png)
-library(grid)
+#library(bslib)
+#library(fresh)
+#library(png)
+#library(grid)
 library(purrr)
-library(readxl)
+#library(readxl)
 library(rebird)
 library(downloader)
 library(sf)
-library(shinyalert)
 library(DT)
 
 
@@ -718,7 +718,7 @@ download_photos <- function(x, output.path) {
   }
   
   # Remove existing files
-  do.call(file.remove, list(list.files("display/www/img/obs", full.names = TRUE)))
+  do.call(file.remove, list(list.files("www/img/obs", full.names = TRUE)))
   
   # Filter the inat obs data frame so that there are no duplicate species
   pic_data <- x %>% 
@@ -771,7 +771,7 @@ download_photos <- function(x, output.path) {
     }
   
   # Write the data frame
-  write.csv(pic_10random, "display/www/datasets/summary_10random.csv", row.names = F)
+  write.csv(pic_10random, "www/datasets/summary_10random.csv", row.names = F)
   
 }
 
