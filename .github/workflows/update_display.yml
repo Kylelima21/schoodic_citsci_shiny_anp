@@ -15,6 +15,7 @@ jobs:
       - name: Install packages
         run: |
           R -e 'install.packages("rsconnect")'
+          R -e 'library("rsconnect")'
           
       - name: Run rmd to update info
         run: |
