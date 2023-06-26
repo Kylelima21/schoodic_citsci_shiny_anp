@@ -1,10 +1,10 @@
 ### This script downloads the data and images that are to be updated daily.
 
 # ## Source the functions
-# source("00_app_functions.R")
-# library(rsconnect)
-# 
-# 
+source("00_app_functions.R")
+library(rsconnect)
+
+
 # ### Raw data
 # ## Pull iNaturalist and eBird data
 # inat <- inat_recent("1647", "week", "Acadia National Park")
@@ -32,10 +32,10 @@
 
 ### Deploy updates to shiny app
 ## Set up account info:
-# setAccountInfo(name = "schoodic-institute-data", 
-#                token = "57B287A6E91E86DCCA29B542392AB8E2", 
-#                secret = "6NZ1FD19vvDi6pKIQ+iMXgxiYyTsgOc2yEzTl4bC",
-#                server = "shinyapps.io")
+setAccountInfo(name = "schoodic-institute-data", 
+               token = "57B287A6E91E86DCCA29B542392AB8E2", 
+               secret = "6NZ1FD19vvDi6pKIQ+iMXgxiYyTsgOc2yEzTl4bC",
+               server = "shinyapps.io")
 
 ## Deploy
 deployApp(launch.browser = F, forceUpdate = T)
