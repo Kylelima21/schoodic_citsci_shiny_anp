@@ -77,13 +77,13 @@ inat_recent <- function(place_id, timespan, parkname) {
   year <- date.filter$year
   month <- date.filter$month
 
-     ym <- paste(year, month, sep = "-") %>% 
+  ym <- paste(year, month, sep = "-") %>% 
     unique() %>% 
     as.list()
   
   
   # This is the function that starts the download of inat data inside park boundary
-  get_inat_data <- function(obs_year, obs_month) {
+  get_inat_data <- function(dates) {
 
     obs_year <- dates %>% 
       unlist() %>%
