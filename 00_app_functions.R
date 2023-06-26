@@ -76,10 +76,22 @@ inat_recent <- function(place_id, timespan, parkname) {
   # List the month and year for get_inat_obs sub-function
   year <- date.filter$year
   month <- date.filter$month
+
+     ym <- paste(year, month, sep = "-") %>% 
+    unique() %>% 
+    as.list()
   
   
   # This is the function that starts the download of inat data inside park boundary
   get_inat_data <- function(obs_year, obs_month) {
+
+    obs_year <- dates %>% 
+      unlist() %>%
+      str_remove(., "\\-\\d*$")
+    
+    obs_month <- dates %>% 
+      unlist() %>% 
+      str_remove(., "^\\d*\\-")
     
     get_inat_obs(quality = "research",
                  place_id = place_id,
@@ -100,7 +112,7 @@ inat_recent <- function(place_id, timespan, parkname) {
   if (timespan == "week") {
     
     # Pull the previous week of inat data
-    inat_obs <- map2_dfr(year, month, get_inat_data) %>% 
+    inat_obs <- map_dfr(ym, get_inat_data) %>% 
       filter(observed.on >= date.filter$date[7] & observed.on <= date.filter$date[1])
     
   }
@@ -110,7 +122,7 @@ inat_recent <- function(place_id, timespan, parkname) {
   if (timespan == "threeday") {
     
     # Subset this to three days
-    inat_obs <- map2_dfr(year, month, get_inat_data) %>% 
+    inat_obs <- map_dfr(ym, get_inat_data) %>% 
       filter(observed.on >= date.filter$date[3])
     
   }
@@ -120,7 +132,7 @@ inat_recent <- function(place_id, timespan, parkname) {
   if (timespan == "yesterday") {
     
     # Subset this to only yesterday
-    inat_obs <- map2_dfr(year, month, get_inat_data) %>% 
+    inat_obs <- map_dfr(ym, get_inat_data) %>% 
       filter(observed.on == date.filter$date[1])
     
   }
