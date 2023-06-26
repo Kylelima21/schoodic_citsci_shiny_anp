@@ -32,10 +32,3 @@ jobs:
         run: |
             source("get_app_data.R")
         shell: Rscript {0} 
-      
-      - name: Commit files # Commit changes
-        run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          git add .
-          git diff-index --quiet HEAD || (git commit -m "daily update of welcome center display" && git push)
