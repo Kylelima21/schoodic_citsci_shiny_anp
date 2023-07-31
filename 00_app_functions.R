@@ -322,8 +322,7 @@ filter_nps <- function(dat, park, lat, long) {
   
   if (park == "Acadia National Park") {
     
-    acad.bounds <- sf::read_sf("acad_boundary/ACAD_ParkBoundary_PY_202004.shp") %>% 
-      st_transform(4326)
+    acad.bounds <- sf::read_sf("acad_boundary/acad_feeboundary_polygon.shp")
     
     
     dat2 <- dat %>% 
@@ -333,14 +332,9 @@ filter_nps <- function(dat, park, lat, long) {
       sf::st_as_sf(., coords = c("x","y"), crs = sf::st_crs(acad.bounds))
     
     
-    dat2 %>% 
-      mutate(intersect = as.integer(st_intersects(geometry, acad.bounds))) %>% 
-      filter(!is.na(intersect))
-    
-    
     output <- sf::st_join(dat2, acad.bounds, left = F) %>% 
       st_set_geometry(., NULL) %>% 
-      select(-c(CLASS, Acres, Hectares, SHAPE_Leng, SHAPE_Area)) %>% 
+      select(-c(FID)) %>% 
       select(everything(), latitude = latitude.keep, longitude = longitude.keep)
     
   } else {
