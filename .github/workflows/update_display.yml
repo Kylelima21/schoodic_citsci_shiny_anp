@@ -1,6 +1,6 @@
 name: Update data for display
 on:
-  push
+  #push
   schedule:
     - cron:  '0 1 * * *'
     
