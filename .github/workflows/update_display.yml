@@ -1,7 +1,8 @@
 name: Update data for display
 on:
-  schedule:
-    - cron:  '0 1 * * *'
+  push
+  #schedule:
+    #- cron:  '0 1 * * *'
     
     
   workflow_dispatch:
