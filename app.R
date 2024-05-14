@@ -43,7 +43,7 @@ ui <- fluidPage(
   ### BODY
   tags$body(
     
-    ## Navigation
+    ### Navigation
     tags$header(class = "primary-header",
      div(class = "logo-one",
          tags$img(src = "img/schoodic_horizontal.png", alt = "Schoodic Institute at Acadia National Park",

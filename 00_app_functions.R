@@ -645,19 +645,20 @@ species_leaflet <- function (x) {
   
   map <- leaflet(options = leafletOptions(zoomControl = FALSE)) %>% 
     addProviderTiles(providers$Esri.WorldImagery) %>% 
-    addProviderTiles(providers$Stamen.TonerLines, options = providerTileOptions(opacity = 0.35)) %>% 
+    addProviderTiles(providers$Stadia.StamenTerrainLines, options = providerTileOptions(opacity = 0.5)) %>% 
     #addProviderTiles(providers$Stamen.TerrainLabels) %>%
     addProviderTiles(providers$CartoDB.PositronOnlyLabels) %>% 
     addMarkers(formap$longitude, formap$latitude, #label = formap$location,
                labelOptions = labelOptions(textsize = "15px"),
-               clusterOptions = markerClusterOptions(),
-               popup = formap$place.guess) %>%
+               clusterOptions = markerClusterOptions(), 
+               popup = formap$place.guess) %>% 
     fitBounds(minLong, minLat, maxLong, maxLat)
   
   return(map)
 }
 
 
+x <- the_data %>% filter(common.name == "alder flycatcher")
 
 
 #' Function to produce an interactive leaflet map widget of iNaturalist observations
