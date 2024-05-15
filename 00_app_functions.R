@@ -658,7 +658,6 @@ species_leaflet <- function (x) {
 }
 
 
-x <- the_data %>% filter(common.name == "alder flycatcher")
 
 
 #' Function to produce an interactive leaflet map widget of iNaturalist observations

@@ -1,11 +1,13 @@
 name: si_citizen_science_display
-title: si_citizen_science_display
+title: schoodic_citsci_shiny_anp
 username:
 account: jvgbqc-kyle-lima
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 9162967
-bundleId: 7367017
+bundleId: 8615820
 url: https://schoodic-institute-data.shinyapps.io/si_citizen_science_display/
-when: 1687270507.94027
-lastSyncTime: 1687270507.94028
+when: 1715719233.73529
+lastSyncTime: 1715719233.73531
+asMultiple: FALSE
+asStatic: FALSE
