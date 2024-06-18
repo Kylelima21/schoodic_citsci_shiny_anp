@@ -1,4 +1,4 @@
-## NPF funded project to present citizen science data to the public and land managers
+## NPF funded project to communicate citizen science data to the public and land managers
 ## This app is specific to Acadia National Park, though the area of interest is easily changed
 
 
