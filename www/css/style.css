@@ -167,8 +167,8 @@ ol[role="list"] {
   z-index: 2000;
   text-align: left;
   display: grid;
-  grid-column-gap: 4rem;
-  grid-template-columns: 350px 1fr;
+  grid-column-gap: 2rem;
+  grid-template-columns: 320px 1fr;
   grid-template-areas:
     "logo1 menubox"
 }
@@ -200,7 +200,7 @@ ol[role="list"] {
 
 .menu-nav-box {
   grid-area: menubox;
-  width: 100%;
+  max-width: 100%;
 }
 
 .nav-wrapper {
@@ -216,8 +216,8 @@ nav ul {
 nav li {
   position: relative;
   display: inline-block;
-  margin: 0 2vw 0 2vw;
-  max-height: 9rem;
+  margin: 0 1.2vw 0 1.2vw;
+  max-height: 8rem;
 }
 
 nav a {
@@ -408,8 +408,8 @@ nav a:focus::before {
 .tres-text {
   position: absolute;
   font-size: var(--main-text-size);
-  bottom: 26%;
-  left: 1%;
+  bottom: 41%;
+  left: 7%;
   color: white;
   transform: scale(0);
   transition: 
@@ -420,8 +420,8 @@ nav a:focus::before {
 .snap-text {
   position: absolute;
   font-size: var(--main-text-size);
-  bottom: 38%;
-  left: 36.5%;
+  bottom: 32%;
+  left: 36%;
   color: black;
   transform: scale(0);
   transition: 
@@ -432,8 +432,8 @@ nav a:focus::before {
 .mon-text {
   position: absolute;
   font-size: var(--main-text-size);
-  bottom: 6%;
-  right: 20%;
+  bottom: 3%;
+  right: 16%;
   color: black;
   transform: scale(0);
   transition: 
@@ -1109,7 +1109,7 @@ nav a:focus::before {
 
 .bottom-right {
   position: absolute;
-  bottom: 13%;
+  bottom: 6%;
   right: 4%;
   color: white;
 }

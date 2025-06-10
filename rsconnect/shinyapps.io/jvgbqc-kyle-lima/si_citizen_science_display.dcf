@@ -5,9 +5,5 @@ account: jvgbqc-kyle-lima
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 9162967
-bundleId: 8615820
+bundleId: 10432812
 url: https://schoodic-institute-data.shinyapps.io/si_citizen_science_display/
-when: 1715719233.73529
-lastSyncTime: 1715719233.73531
-asMultiple: FALSE
-asStatic: FALSE

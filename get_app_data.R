@@ -1,6 +1,6 @@
 ### This script downloads the data and images that are to be updated daily.
 
-# ## Source the functions
+### Source the functions
 source("00_app_functions.R")
 library(rsconnect)
 

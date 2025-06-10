@@ -100,7 +100,7 @@ ui <- fluidPage(
                         div(class = "tres-text",
                             p("tree swallow")),
                         div(class = "snap-text",
-                            p("common snapping turtle")),
+                            p(HTML("common snapping <br> turtle"))),
                         div(class = "mon-text",
                             p("monarch")),
                         div(class = "intro-three",

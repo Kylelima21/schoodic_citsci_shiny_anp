@@ -37,3 +37,8 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+## inat and ebird datasets
+www/datasets/full_inat_obs_20240715.csv
+www/datasets/ebd_US-ME_relMay-2024.txt
+
