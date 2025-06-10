@@ -30,6 +30,7 @@ jobs:
           R -e 'install.packages("rsconnect")'
           
       - name: Run rmd to update info
-        run: |
-            source("get_app_data.R")
-        shell: Rscript {0} 
+        run: Rscript get_app_data.R
+        #run: |
+        #    source("get_app_data.R")
+        #shell: Rscript {0} 
