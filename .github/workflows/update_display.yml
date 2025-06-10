@@ -27,13 +27,10 @@ jobs:
           R -e 'install.packages("DT")'
           R -e 'install.packages("downloader")'
           R -e 'install.packages("purrr")'
-          R -e 'install.packages("rsconnect")'
+          # Force reinstall rsconnect and curl
+          R -e 'install.packages("curl", repos = "https://cloud.r-project.org")'
+          R -e 'install.packages("rsconnect", repos = "https://cloud.r-project.org")'
 
-      - name: Update system OpenSSL and curl
-        run: |
-          brew update
-          brew upgrade openssl curl
-        shell: bash
           
       - name: Run rmd to update info
         run: Rscript get_app_data.R
