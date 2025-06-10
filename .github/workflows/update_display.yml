@@ -28,6 +28,12 @@ jobs:
           R -e 'install.packages("downloader")'
           R -e 'install.packages("purrr")'
           R -e 'install.packages("rsconnect")'
+
+      - name: Update system OpenSSL and curl
+        run: |
+          brew update
+          brew upgrade openssl curl
+        shell: bash
           
       - name: Run rmd to update info
         run: Rscript get_app_data.R
