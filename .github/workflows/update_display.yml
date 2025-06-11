@@ -39,10 +39,8 @@ jobs:
 
           
       - name: Run rmd to update info
-        env:
-          CURL_CA_BUNDLE: $(brew --prefix openssl)/cert.pem
-        SHINYAPPS_TOKEN: ${{ 4DCE0B7259C55C9E54CB6DE48E92AC0B }}
-        SHINYAPPS_SECRET: ${{ INFLCN82oWDAYAcgnnDQayuSulTbzkQQGwMRB7Qy }}
+        #env:
+          #CURL_CA_BUNDLE: $(brew --prefix openssl)/cert.pem
         run: Rscript get_app_data.R
         #run: |
         #    source("get_app_data.R")
