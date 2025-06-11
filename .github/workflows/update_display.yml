@@ -23,19 +23,19 @@ jobs:
           
       - name: Install packages
         run: |
-          R -e 'install.packages("sf")'
-          R -e 'install.packages("tidyverse")'
-          R -e 'install.packages("lubridate")'
-          R -e 'install.packages("leaflet")'
-          R -e 'install.packages("shinyWidgets")'
-          R -e 'install.packages("rinat")'
-          R -e 'install.packages("rebird")'
-          R -e 'install.packages("DT")'
-          R -e 'install.packages("downloader")'
-          R -e 'install.packages("purrr")'
-          # Force reinstall rsconnect and curl
-          R -e 'install.packages("curl", repos = "https://cloud.r-project.org")'
-          R -e 'install.packages("rsconnect", repos = "https://cloud.r-project.org")'
+          install.packages("sf")
+          install.packages("tidyverse")
+          install.packages("lubridate")
+          install.packages("leaflet")
+          install.packages("shinyWidgets")
+          install.packages("rinat")
+          install.packages("rebird")
+          install.packages("DT")
+          install.packages("downloader")
+          install.packages("purrr")
+          # Force reinstall curl and rsconnect to link with potentially updated system libraries
+          install.packages("curl", repos = "https://cloud.r-project.org")
+          install.packages("rsconnect", repos = "https://cloud.r-project.org")
         shell: Rscript {0}
 
           
