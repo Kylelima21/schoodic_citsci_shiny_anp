@@ -14,6 +14,12 @@ jobs:
         with: 
           r-version: '4.4.1'
       #- uses: r-lib/actions/setup-pandoc@v2 # Set up pandoc for RMD file
+
+      - name: Update system OpenSSL and curl
+        run: |
+          brew update
+          brew upgrade openssl curl
+        shell: bash
           
       - name: Install packages
         run: |
@@ -30,6 +36,7 @@ jobs:
           # Force reinstall rsconnect and curl
           R -e 'install.packages("curl", repos = "https://cloud.r-project.org")'
           R -e 'install.packages("rsconnect", repos = "https://cloud.r-project.org")'
+        shell: Rscript {0}
 
           
       - name: Run rmd to update info
