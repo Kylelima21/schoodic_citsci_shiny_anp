@@ -43,7 +43,7 @@ download_photos(final_data, "www/img/obs")
 # setwd()
 # options(rsconnect.check.certificate = FALSE)
 # rsconnect::deployApp(launch.browser = F, forceUpdate = T)
-rsconnect::setAccountInfo(name = 'kylelima21',
+rsconnect::setAccountInfo(name = 'schoodic-institute-data',
                           token = Sys.getenv('GITHUB_PAT'),
                           secret = Sys.getenv('GITHUB_SECRET'))
 
