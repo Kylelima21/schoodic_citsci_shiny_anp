@@ -32,10 +32,12 @@ download_photos(final_data, "www/img/obs")
 
 ### Deploy updates to shiny app
 ## Set up account info:
-setAccountInfo(name = "schoodic-institute-data", 
-               token = "57B287A6E91E86DCCA29B542392AB8E2", 
-               secret = "6NZ1FD19vvDi6pKIQ+iMXgxiYyTsgOc2yEzTl4bC",
-               server = "shinyapps.io")
+# rsconnect::setAccountInfo(name = "schoodic-institute-data", 
+#                token = "57B287A6E91E86DCCA29B542392AB8E2", 
+#                secret = "6NZ1FD19vvDi6pKIQ+iMXgxiYyTsgOc2yEzTl4bC",
+#                server = "shinyapps.io")
+rsconnect::setAccountInfo(name='schoodic-institute-data', token='57B287A6E91E86DCCA29B542392AB8E2', secret='6NZ1FD19vvDi6pKIQ+iMXgxiYyTsgOc2yEzTl4bC')
+
 
 ## Deploy
 deployApp(launch.browser = F, forceUpdate = T)
