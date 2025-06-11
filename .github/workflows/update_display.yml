@@ -33,13 +33,14 @@ jobs:
           install.packages("DT")
           install.packages("downloader")
           install.packages("purrr")
-          # Force reinstall curl and rsconnect to link with potentially updated system libraries
           install.packages("curl", repos = "https://cloud.r-project.org")
           install.packages("rsconnect", repos = "https://cloud.r-project.org")
         shell: Rscript {0}
 
           
       - name: Run rmd to update info
+        env:
+          CURL_CA_BUNDLE: $(brew --prefix openssl)/cert.pem
         run: Rscript get_app_data.R
         #run: |
         #    source("get_app_data.R")
