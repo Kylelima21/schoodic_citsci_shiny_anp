@@ -43,7 +43,9 @@ download_photos(final_data, "www/img/obs")
 # setwd()
 # options(rsconnect.check.certificate = FALSE)
 # rsconnect::deployApp(launch.browser = F, forceUpdate = T)
-
+rsconnect::setAccountInfo(name = 'kylelima21',
+                          token = Sys.getenv('GITHUB_PAT'),
+                          secret = Sys.getenv('GITHUB_SECRET'))
 
 
 ## Run watchlist and new species analysis
