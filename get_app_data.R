@@ -36,8 +36,7 @@ download_photos(final_data, "www/img/obs")
 #                token = "57B287A6E91E86DCCA29B542392AB8E2", 
 #                secret = "6NZ1FD19vvDi6pKIQ+iMXgxiYyTsgOc2yEzTl4bC",
 #                server = "shinyapps.io")
-rsconnect::setAccountInfo(name='schoodic-institute-data', token='57B287A6E91E86DCCA29B542392AB8E2', secret='6NZ1FD19vvDi6pKIQ+iMXgxiYyTsgOc2yEzTl4bC')
-
+rsconnect::setAccountInfo(name='schoodic-institute-data', token='4DCE0B7259C55C9E54CB6DE48E92AC0B', secret='INFLCN82oWDAYAcgnnDQayuSulTbzkQQGwMRB7Qy')
 
 ## Deploy
 deployApp(launch.browser = F, forceUpdate = T)
