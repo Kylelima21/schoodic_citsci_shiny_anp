@@ -32,17 +32,15 @@ download_photos(final_data, "www/img/obs")
 
 ### Deploy updates to shiny app
 ## Set up account info:
-# rsconnect::setAccountInfo(name = "schoodic-institute-data", 
-#                token = "57B287A6E91E86DCCA29B542392AB8E2", 
-#                secret = "6NZ1FD19vvDi6pKIQ+iMXgxiYyTsgOc2yEzTl4bC",
-#                server = "shinyapps.io")
-# rsconnect::setAccountInfo(name='schoodic-institute-data', token='4DCE0B7259C55C9E54CB6DE48E92AC0B', secret='INFLCN82oWDAYAcgnnDQayuSulTbzkQQGwMRB7Qy')
-
+rsconnect::setAccountInfo(name = "schoodic-institute-data", 
+               token = "57B287A6E91E86DCCA29B542392AB8E2", 
+               secret = "6NZ1FD19vvDi6pKIQ+iMXgxiYyTsgOc2yEzTl4bC",
+               server = "shinyapps.io")
 
 ## Deploy
 # setwd()
 # options(rsconnect.check.certificate = FALSE)
-# rsconnect::deployApp(launch.browser = F, forceUpdate = T)
+rsconnect::deployApp(launch.browser = F, forceUpdate = T)
 # rsconnect::setAccountInfo(name = 'schoodic-institute-data',
 #                           token = Sys.getenv('GITHUB_PAT'),
 #                           secret = Sys.getenv('GITHUB_SECRET'))
