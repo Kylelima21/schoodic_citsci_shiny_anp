@@ -22,6 +22,12 @@ jobs:
           brew update
           brew upgrade openssl curl
         shell: bash
+
+      - name: Update CA Certificates (Crucial for SSL)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ca-certificates
+          sudo update-ca-certificatesΩ
           
       - name: Install packages
         run: |
