@@ -7,61 +7,29 @@ on:
 #workflow_dispatch:
 jobs:
   Deploy:
-    runs-on: macos-latest # Confirmed runner OS
-    env:
-      GITHUB_PAT: ${{secrets.DEPLOY_SECRET}} # Not directly used in the R script here, but kept if needed elsewhere
-      # Set environment variables for rsconnect, these will be picked up by rsconnect::deployApp
-      SHINYAPPS_ACCOUNT: schoodic-institute-data
-      SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
-      SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
-
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2 # Checkout branch into the runner
-
-      - name: Setup R
-        uses: r-lib/actions/setup-r@v2 # Set up R
-        with:
-          r-version: '4.4.1'
-
-      - name: Update system OpenSSL, curl, and CA Certificates (for macOS)
-        run: |
-          brew update
-          brew upgrade openssl@3 || brew install openssl@3
-          brew upgrade curl || brew install curl
-          brew install ca-certificates || brew upgrade ca-certificates
-          
-          brew unlink openssl@1.1 || true
-          brew link --overwrite openssl@3
-          
-          echo "CURL_CA_BUNDLE=$(brew --prefix openssl@3)/cert.pem" >> $GITHUB_ENV
-          echo "SSL_CERT_FILE=$(brew --prefix openssl@3)/cert.pem" >> $GITHUB_ENV
-        shell: bash
+      - uses: r-lib/actions/setup-r@v2 # Set up R
+        #with: 
+          #r-version: '4.4.1'
+      #- uses: r-lib/actions/setup-pandoc@v2 # Set up pandoc for RMD file
           
       - name: Install packages
         run: |
-          install.packages(c(
-            "sf", "tidyverse", "lubridate", "leaflet",
-            "shinyWidgets", "rinat", "rebird", "DT",
-            "downloader", "purrr", "rsconnect", "curl"
-          ), dependencies = TRUE)
-        shell: Rscript {0}
+          R -e 'install.packages("sf")'
+          R -e 'install.packages("tidyverse")'
+          R -e 'install.packages("lubridate")'
+          R -e 'install.packages("leaflet")'
+          R -e 'install.packages("shinyWidgets")'
+          R -e 'install.packages("rinat")'
+          R -e 'install.packages("rebird")'
+          R -e 'install.packages("DT")'
+          R -e 'install.packages("downloader")'
+          R -e 'install.packages("purrr")'
+          R -e 'install.packages("rsconnect")'
           
       - name: Run rmd to update info
-        run: Rscript get_app_data.R
-
-      - name: Deploy Shiny App
         run: |
-          rsconnect::setAccountInfo(
-            name = Sys.getenv("SHINYAPPS_ACCOUNT"),
-            token = Sys.getenv("SHINYAPPS_TOKEN"),
-            secret = Sys.getenv("SHINYAPPS_SECRET")
-          )
-
-          rsconnect::deployApp(
-            appDir = ".", # Assumes your shiny app is in the root directory of the repo
-            appName = "schoodic_citsci_shiny_anp",
-            account = Sys.getenv("SHINYAPPS_ACCOUNT"),
-            server = "shinyapps.io",
-            forceUpdate = TRUE # Force update the app even if rsconnect thinks it's current
-          )
-        shell: Rscript {0}
+            source("get_app_data.R")
+        shell: Rscript {0} 
