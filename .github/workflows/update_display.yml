@@ -41,7 +41,7 @@ jobs:
         run: echo "CURL_CA_BUNDLE=$(brew --prefix openssl)/etc/ssl/cert.pem" >> $GITHUB_ENV
 
 
-      - name: shinyapps deploy
+      - name: shinyapp deploy
         env:
           CURL_CA_BUNDLE: ${{ env.CURL_CA_BUNDLE }}
         run: |
