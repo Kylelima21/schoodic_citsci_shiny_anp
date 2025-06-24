@@ -5,8 +5,6 @@ account: schoodic-institute-data
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 9358529
-bundleId: 10440714
+bundleId: 10511423
 url: https://schoodic-institute-data.shinyapps.io/schoodic_citsci_shiny_anp/
 version: 1
-asMultiple: FALSE
-asStatic: FALSE
