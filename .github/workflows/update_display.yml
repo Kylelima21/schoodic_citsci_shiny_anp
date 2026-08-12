@@ -32,9 +32,6 @@ jobs:
           R -e 'install.packages("PKI")'
           
       - name: Run rmd to update info
-        env:
-          SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
-          SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
         run: |
             source("get_app_data.R")
         shell: Rscript {0} 
