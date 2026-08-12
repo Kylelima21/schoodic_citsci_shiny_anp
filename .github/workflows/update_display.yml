@@ -1,8 +1,8 @@
 name: Update data for display
 on:
-  #push
-  schedule:
-    - cron:  '0 1 * * *'
+  push
+  #schedule:
+    #- cron:  '0 1 * * *'
   
 #workflow_dispatch:
 jobs:
@@ -29,8 +29,12 @@ jobs:
           R -e 'install.packages("purrr")'
           R -e 'install.packages("jose")'
           R -e 'install.packages("rsconnect")'
+          R -e 'install.packages("PKI")'
           
       - name: Run rmd to update info
+        env:
+          SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
+          SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
         run: |
             source("get_app_data.R")
         shell: Rscript {0} 
