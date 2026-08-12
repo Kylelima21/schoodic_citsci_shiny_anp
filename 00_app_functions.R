@@ -17,6 +17,7 @@ library(rebird)
 library(downloader)
 library(sf)
 library(DT)
+library(httr2)
 
 
 ## List of functions
@@ -182,23 +183,50 @@ inat_recent <- function(place_id, timespan, parkname) {
 
 ebird_recent <- function(ebird_loc, parkname) {
   
-  # Get code list
-  codelist <- ebirdregion(loc = ebird_loc, back = 7, key = "kjh86bnmkpfh") %>% 
-    pull(speciesCode)
+  # Get all species reported in Maine in the last 7 days
+  req <- request(paste0("https://api.ebird.org/v2/data/obs/", ebird_loc, "/recent")) %>%
+    req_headers(`X-eBirdApiToken` = "g5licssn6jng") %>%
+    req_url_query(back = 7)
+  
+  
+  # Create vector of species codes
+  codelist <- req_perform(req) %>%
+    resp_body_json(simplifyVector = TRUE) %>%
+    as_tibble() %>%
+    pull(speciesCode) %>%
+    unique()
   
   
   # Create a run function to pull the data for each species in the code list
-  run <- function(ebird_loc, code) {
+  run_ebirddat <- function(ebird_loc, code) {
     
-    data <- ebirdregion(loc = ebird_loc, species = code, back = 7, key = "kjh86bnmkpfh") %>% 
+    # Slow down requests to avoid hammering the API
+    Sys.sleep(2)
+    
+    req <- request(paste0("https://api.ebird.org/v2/data/obs/", ebird_loc, "/recent/", code)) %>%
+      req_headers(`X-eBirdApiToken` = "g5licssn6jng") %>%
+      req_url_query(back = 7) %>%
+      req_retry(max_tries = 5)
+    
+    resp <- req_perform(req)
+    
+    out <- resp_body_json(resp, simplifyVector = TRUE)
+    
+    # Some species could conceivably return nothing
+    if (length(out) == 0) {
+      return(tibble())
+    }
+    
+    data.b <- out %>%
+      as_tibble() %>%
       mutate(url = paste0("https://ebird.org/checklist/", subId))
     
-    return(data)
+    return(data.b)
   }
   
   
   # Map over this function and clean
-  mid <- map2_dfr(ebird_loc, codelist, run) %>% 
+  mid <- map_dfr(codelist, ~ run_ebirddat(ebird_loc, .x)) %>% 
     mutate(iconic.taxon.name = "Aves",
            obsDt = as.Date(obsDt)) %>% 
     select(scientific.name = sciName, common.name = comName, iconic.taxon.name, count = howMany,
